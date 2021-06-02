@@ -1,6 +1,4 @@
-const jobCardsContainer = document.querySelector('.container');
-
-let jobAnouncements = [
+let jobsAnouncements = [
   {
     id: '32bf67e5-4971-47ce-985c-44b6b3860cdb',
     type: 'Full Time',
@@ -788,26 +786,49 @@ let jobAnouncements = [
   }
 ];
 
-jobAnouncements.forEach(jobAnouncement => {
- const {company_logo, created_at, type, title, company, location} = jobAnouncement;
+const container = document.querySelector('.container');
 
- const jobCardHTML = `<div class="job-card ">
-   <div class="job-card__img">
-    <img src="${company_logo}" alt="">
-   </div>
-   <div class="job-card__text">
-   <div class="job-card__date">
-    <span class="job-card__published">${created_at}</span>
-    <span class="job-card__working-time">${type}</span>
-   </div>
-    <h3 class="job-card__title">${title}
-    </h3>
-   <span class="job-card__company-name">${company}</span>
-   <p class="job-card__location">${location}</p>
-   </div>
-  </div>`
+function buildJobAnouncementsInUI(anouncements) {
+  anouncements.forEach((item) => {
+    const { title, coverPhoto, published, shift, place, companyName } =
+      item;
 
-  // console.log(jobCardHTML);
+    const jobcardHtml = `<div class="jobs-card">
+  <div class="jobs-card__photo">
+      <img src="./assets/desktop/${coverPhoto}" alt="loop-studios">
+  </div>
+  <div class="jobs-card__description">
+      <div class="jobs-card__description-top">
+   <span class="job-card__published">${published}</span>
+   <span class="job-card__shift">${shift}</span>
+      </div>
+      <p class="job-card__title">${title}</p>
+      <div class="jobs-card__description-bottom">${companyName}</div>
+  </div>
+  <div class="jobs-card__locations">
+      <span class="job-card__location">${place}</span>
+  </div>
+  </div>
+`;
 
-  jobCardsContainer.insertAdjacentHTML('afterbegin', jobCardHTML);
-})
+    container.insertAdjacentHTML('beforeend', jobcardHtml);
+  });
+}
+
+const headers = {
+  headers: {
+    'Content-Type': 'application/json'
+    // 'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE',
+    // 'Access-Control-Allow-Headers':
+    //   'Origin, X-Requested-With, Content-Type, Accept,authorization',
+    // mode: 'cors'
+  }
+  // body data type must match "Content-Type" header
+};
+
+fetch('https://jobs.github.com/positions.json', {
+  'Content-Type': 'application/json'
+}).then((response) => {
+  console.log(response);
+});
