@@ -811,3 +811,9 @@ jobAnouncements.forEach(jobAnouncement => {
 
   jobCardsContainer.insertAdjacentHTML('afterbegin', jobCardHTML);
 })
+
+fetch('https://powerful-journey-13863.herokuapp.com/api/v1/view-count').then((response) => {
+response.json().then((data) => {
+ console.log(data);
+})
+});
