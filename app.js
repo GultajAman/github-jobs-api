@@ -788,32 +788,34 @@ let jobAnouncements = [
   }
 ];
 
-jobAnouncements.forEach(jobAnouncement => {
- const {company_logo, created_at, type, title, company, location} = jobAnouncement;
 
- const jobCardHTML = `<div class="job-card ">
-   <div class="job-card__img">
-    <img src="${company_logo}" alt="">
-   </div>
-   <div class="job-card__text">
-   <div class="job-card__date">
-    <span class="job-card__published">${created_at}</span>
-    <span class="job-card__working-time">${type}</span>
-   </div>
-    <h3 class="job-card__title">${title}
-    </h3>
-   <span class="job-card__company-name">${company}</span>
-   <p class="job-card__location">${location}</p>
-   </div>
-  </div>`
 
-  // console.log(jobCardHTML);
+// jobAnouncements.forEach(jobAnouncement => {
+//  const {company_logo, created_at, type, title, company, location} = jobAnouncement;
 
-  jobCardsContainer.insertAdjacentHTML('afterbegin', jobCardHTML);
-})
+//  const jobCardHTML = `<div class="job-card ">
+//    <div class="job-card__img">
+//     <img src="${company_logo}" alt="">
+//    </div>
+//    <div class="job-card__text">
+//    <div class="job-card__date">
+//     <span class="job-card__published">${created_at}</span>
+//     <span class="job-card__working-time">${type}</span>
+//    </div>
+//     <h3 class="job-card__title">${title}
+//     </h3>
+//    <span class="job-card__company-name">${company}</span>
+//    <p class="job-card__location">${location}</p>
+//    </div>
+//   </div>`
 
-fetch('https://powerful-journey-13863.herokuapp.com/api/v1/view-count').then((response) => {
-response.json().then((data) => {
- console.log(data);
-})
-});
+//   // console.log(jobCardHTML);
+
+//   jobCardsContainer.insertAdjacentHTML('afterbegin', jobCardHTML);
+// })
+
+// fetch('https://powerful-journey-13863.herokuapp.com/api/v1/view-count').then((response) => {
+// response.json().then((data) => {
+//  console.log(data);
+// })
+// });
