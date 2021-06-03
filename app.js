@@ -788,7 +788,59 @@ let jobAnouncements = [
   }
 ];
 
+jobAnouncements.forEach(jobAnouncement => {
+  const {company_logo, created_at, type, title, company, location} = jobAnouncement;
 
+  // first jobcards container for all
+  const jobCards = document.createElement('div');
+  jobCards.classList.add('job-card');
+
+  // img div
+  const jobCardImgDiv = document.createElement('div');
+  jobCardImgDiv.classList.add('job-card__img');
+  const jobCardImg = document.createElement('img');
+  jobCardImg.src = `${company_logo}`;
+
+  // job card text div container
+  const jobCardsText = document.createElement('div');
+  jobCardsText.classList.add('job-card__text');
+
+  // date div inside the text div
+  const jobCardDate = document.createElement('div');
+  jobCardDate.classList.add('job-card__date');
+  //spans inside the date div
+  const jobCardPublished = document.createElement('span');
+  jobCardPublished.classList.add('job-card__published');
+  jobCardPublished.textContent = `${created_at}`;
+
+  const jobCardWorkingTime = document.createElement('span');
+  jobCardWorkingTime.classList.add('job-card__working-time');
+  jobCardWorkingTime.textContent = `${type}`;
+
+  // title inside the text div
+  const jobCardTitle = document.createElement('h3');
+  jobCardTitle.classList.add('job-card__title');
+  jobCardTitle.textContent = `${title}`;
+
+  // company name inside the text div
+  const jobCardCompanyName = document.createElement('span');
+  jobCardCompanyName.classList.add('job-card__company-name');
+  jobCardCompanyName.textContent = `${company}`;
+
+  // location inside the text div
+  const jobCardLocation = document.createElement('p');
+  jobCardLocation.classList.add('job-card__location');
+  jobCardLocation.textContent = `${location}`;
+
+  jobCardImgDiv.append(jobCardImg);
+  jobCardDate.append(jobCardPublished, jobCardWorkingTime)
+  jobCardsText.append(jobCardDate, jobCardTitle, jobCardCompanyName, jobCardLocation);
+
+  jobCards.append(jobCardImgDiv, jobCardsText);
+  // console.log(jobCards);
+
+  jobCardsContainer.append(jobCards);
+})
 
 // jobAnouncements.forEach(jobAnouncement => {
 //  const {company_logo, created_at, type, title, company, location} = jobAnouncement;
